@@ -59,6 +59,14 @@ String getIp() {
     return myip;
 }
 
+void ringDoorBell() {
+    String volt = "";
+    volt += getVoltage();
+    http.begin("http://ringeklokkedet/ring");
+    http.GET();
+    http.end();
+}
+
 void sendMessage(String device) {
     String volt = "";
     volt += getVoltage();
@@ -85,6 +93,7 @@ void setup(void){
     server.onNotFound(handleNotFound);
     sendMessage(mikael);
     sendData();
+    ringDoorBell();
 
     server.begin();
     String hostname = "RingeKlokke";
